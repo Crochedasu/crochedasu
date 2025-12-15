@@ -1,0 +1,293 @@
+/* =========================================
+   IMPORTAÇÃO DE FONTE
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* =========================================
+   VARIÁVEIS DE COR
+   ========================================= */
+:root {
+    --cor-fundo: #eee5e4ff; 
+    --cor-fundo-elementos: #ffffff;
+    --cor-texto: #D4887E;
+    --cor-texto-suave: #777777;
+    --cor-destaque: #D4887E; 
+    --cor-destaque-hover: #b56f66;
+    --cor-borda: #e5e5e5;
+}
+
+/* =========================================
+   RESET GERAL
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* =========================================
+   CABEÇALHO
+   ========================================= */
+.site-header {
+    background-color: var(--cor-fundo-elementos);
+    border-bottom: 1px solid var(--cor-borda);
+    padding: 15px 0;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(238, 145, 145, 0.05);
+}
+
+.header-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 30px;
+}
+
+.branding { text-align: left; }
+.branding h1 {
+    font-size: 28px; font-weight: 700;
+    color: var(--cor-texto); text-transform: uppercase; line-height: 1;
+}
+.branding p {
+    font-size: 12px; color: var(--cor-texto-suave);
+    margin-top: 5px; letter-spacing: 1px;
+}
+
+.search-area {
+    flex-grow: 1; display: flex; max-width: 500px;
+}
+#barraPesquisa {
+    width: 100%; padding: 12px 15px;
+    border: 1px solid var(--cor-borda); border-right: none;
+    border-radius: 25px 0 0 25px; outline: none; font-family: inherit; background-color: #fafafa;
+}
+.search-button {
+    background-color: var(--cor-destaque); color: white;
+    border: none; padding: 0 20px; border-radius: 0 25px 25px 0;
+    cursor: pointer; display: flex; align-items: center; transition: background 0.3s;
+}
+.search-button:hover { background-color: var(--cor-destaque-hover); }
+
+.user-actions { display: flex; align-items: center; gap: 25px; }
+.icon-wrapper, .cart-button {
+    color: var(--cor-texto); cursor: pointer; display: flex; align-items: center;
+    background: none; border: none; padding: 0; transition: color 0.3s;
+}
+.icon-wrapper:hover, .cart-button:hover { color: var(--cor-destaque); }
+
+.cart-button { position: relative; }
+.cart-count {
+    position: absolute; top: -8px; right: -8px;
+    background-color: var(--cor-destaque); color: white;
+    font-size: 10px; font-weight: 600; width: 18px; height: 18px;
+    display: flex; justify-content: center; align-items: center;
+    border-radius: 50%; border: 2px solid var(--cor-fundo-elementos);
+}
+
+/* =========================================
+   VITRINE DE PRODUTOS
+   ========================================= */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px; padding: 50px 20px; max-width: 1300px; margin: 0 auto;
+}
+
+.produto {
+    background-color: var(--cor-fundo-elementos);
+    text-align: left; padding: 15px; border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.produto:hover { 
+    transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+.produto img {
+    width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover;
+    margin-bottom: 15px; border-radius: 6px;
+}
+
+.produto h3 {
+    font-size: 16px; font-weight: 500; color: var(--cor-texto); margin-bottom: 8px;
+}
+
+.produto p.preco {
+    font-size: 18px; font-weight: 700; color: var(--cor-destaque);
+}
+
+/* Estilo para os botões "Adicionar ao Carrinho" */
+.produto button {
+    border-radius: 25px;       /* O SEGREDO: Deixa redondinho */
+    padding: 15px 55px;        /* Espaço interno para ficar gordinho e bonito */
+    border: none;              /* Tira a borda padrão feia */
+    cursor: pointer;           /* Mãozinho quando passa o mouse */
+    
+    /* Sugestão de cor (se já tiver uma, pode manter a sua) */
+    background-color: #D4887E;    
+    color: white;
+    font-weight: bold;
+    
+    /* Efeito suave ao passar o mouse */
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+/* Efeito quando passa o mouse em cima (Opcional) */
+.produto button:hover {
+    transform: scale(1.05);    /* Aumenta um pouquinho */
+    opacity: 0.9;              /* Clareia levemente */
+}
+
+/* =========================================
+   CARRINHO LATERAL
+   ========================================= */
+.carrinho {
+    background-color: var(--cor-fundo-elementos); padding: 30px;
+    position: fixed; right: 0; top: 0; height: 100vh; width: 350px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 1000; overflow-y: auto;
+    display: none; /* JS controla isso */
+}
+
+/* Botão de fechar (X) no carrinho */
+.fechar-carrinho-btn {
+    position: absolute; top: 15px; right: 15px;
+    background: none; border: none; font-size: 24px; color: var(--cor-texto-suave);
+    cursor: pointer;
+}
+.fechar-carrinho-btn:hover { color: var(--cor-destaque); }
+
+.carrinho h2 {
+    font-size: 22px; color: var(--cor-texto);
+    margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--cor-borda);
+}
+
+.btn-finalizar {
+    width: 100%; padding: 15px; margin-top: 20px;
+    background-color: var(--cor-destaque); color: white; border: none;
+    font-weight: 700; border-radius: 4px; cursor: pointer; font-size: 16px;
+}
+.btn-finalizar:hover { background-color: var(--cor-destaque-hover); }
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 900px) {
+    .header-container { flex-direction: column; gap: 20px; padding: 20px 15px; }
+    .search-area { width: 100%; max-width: none; order: 3; }
+    .branding { text-align: center; }
+    .container { gap: 20px; padding: 30px 15px; }
+    .carrinho { width: 85%; }
+}
+/* =========================================
+   RODAPÉ (FOOTER)
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px; /* Espaço para afastar dos produtos */
+    border-top: 1px solid var(--cor-borda); /* Linha sutil acima */
+    color: var(--cor-texto-suave); /* Cor de texto mais leve */
+    font-size: 14px;
+    background-color: var(--cor-fundo-elementos); /* Fundo branco para destacar */
+}
+
+footer p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* Espaço entre o texto e o coração */
+}
+/* =========================================
+   NAVEGAÇÃO DE CATEGORIAS (NOVO)
+   ========================================= */
+.categorias-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que quebre linha em celulares */
+    gap: 15px;
+    padding: 30px 20px 10px 20px; /* Espaçamento acima e abaixo */
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+/* Estilo base dos botões de categoria */
+.cat-btn {
+    background-color: transparent;
+    border: 1px solid var(--cor-borda);
+    padding: 10px 25px;
+    border-radius: 50px; /* Botão redondinho estilo "pílula" */
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cor-texto-suave);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Quando passa o mouse */
+.cat-btn:hover {
+    border-color: var(--cor-destaque);
+    color: var(--cor-destaque);
+}
+
+/* Botão ATIVO (selecionado) */
+.cat-btn.ativo {
+    background-color: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(212, 136, 126, 0.3); /* Sombra suave rosa */
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    .categorias-nav {
+        gap: 10px;
+        padding-bottom: 0;
+    }
+    .cat-btn {
+        padding: 8px 15px;
+        font-size: 13px;
+        flex-grow: 1; /* Faz os botões ocuparem o espaço disponível */
+        text-align: center;
+    }
+}
+#meuCarrinho {
+    /* ... seus estilos ... */
+    
+    /* Adicione esta linha: */
+    animation: aparecerSuave 0.3s ease-in-out;
+}
+
+@keyframes aparecerSuave {
+    from {
+        opacity: 0;
+        transform: scale(0.95); /* Começa levemente menor */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);    /* Tamanho normal */
+    }
+}
+/* Quando essa classe for adicionada, o carrinho desliza para fora */
+.carrinho-fechando {
+    animation: sairPelaDireita 0.5s ease-in forwards !important;
+}
+
+@keyframes sairPelaDireita {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%); /* Vai para a direita */
+    }
+}
